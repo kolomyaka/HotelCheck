@@ -1,0 +1,12 @@
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+
+}
+
+.error {
+  color: var(--error-color);
+}
