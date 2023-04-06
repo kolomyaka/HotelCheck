@@ -25,7 +25,6 @@ export function buildLoaders(options: BuildOptions) {
         exclude: /node_modules/,
     };
 
-
     return [
         typeScriptLoader,
         styleLoader,

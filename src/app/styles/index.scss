@@ -1,6 +1,6 @@
-@import './reset.scss';
-@import './variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import './reset';
+@import './variables';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap';
 
 #root {
   font: var(--font-m);

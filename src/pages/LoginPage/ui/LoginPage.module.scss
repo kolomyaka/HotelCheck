@@ -1,3 +1,13 @@
 .loginPage {
+  background-image: url('shared/assets/images/background.webp');
+  height: 100vh;
 
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255 255 255 / 60%);
+    backdrop-filter: blur(10px);
+    position: absolute;
+  }
 }

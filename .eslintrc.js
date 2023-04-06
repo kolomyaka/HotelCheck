@@ -26,6 +26,7 @@ module.exports = {
     'rules': {
         'react/jsx-indent': [2, 4, { indentLogicalExpressions: true }],
         indent: [2,4],
+        '@typescript-eslint/no-empty-interface': 'warn',
         'react/jsx-props-no-spreading': 'warn',
         'react/react-in-jsx-scope': 'off',
         'max-statements': [2, 20],

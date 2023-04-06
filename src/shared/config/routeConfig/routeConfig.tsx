@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom';
-import { LoginPage } from 'pages/LoginPage/ui/LoginPage';
-import { MainPage } from 'pages/MainPage/MainPage';
+import { LoginPage } from 'pages/LoginPage';
+import { MainPage } from 'pages/MainPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;

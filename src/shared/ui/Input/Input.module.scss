@@ -1,12 +1,27 @@
-.input {
+.inputWrapper {
   display: flex;
   flex-direction: column;
 }
 
 .label {
+  margin-bottom: 7px;
+}
 
+.input {
+  border: 1px solid #C9CACC;
+  padding: 15px;
+  border-radius: var(--radius-s);
+
+  &:read-only {
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .error {
+  margin-top: 7px;
   color: var(--error-color);
 }
