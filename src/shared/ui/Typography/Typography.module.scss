@@ -10,6 +10,10 @@
   font: var(--font-m);
 }
 
+.S {
+  font: var(--font-s);
+}
+
 .left {
   text-align: left;
 }
@@ -32,4 +36,8 @@
 
 .medium {
   font-weight: 500;
+}
+
+.gray {
+  color: var(--gray-color);
 }

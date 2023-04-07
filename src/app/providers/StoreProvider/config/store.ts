@@ -6,6 +6,8 @@ import rootSaga from './saga';
 import { StateSchema } from './StateSchema';
 import { loginReducer } from 'features/AuthByEmail';
 import { userReducer } from 'entities/User';
+import { searchHotelsFormReducer } from 'features/SearchHotelsForm';
+import { hotelsReducer } from 'entities/Hotel';
 
 const persistConfig = {
     key: 'root',
@@ -15,7 +17,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers<StateSchema>({
     login: loginReducer,
-    user: userReducer
+    user: userReducer,
+    searchHotels: searchHotelsFormReducer,
+    hotelsData: hotelsReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

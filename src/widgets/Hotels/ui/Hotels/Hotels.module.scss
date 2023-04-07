@@ -6,3 +6,8 @@
   display: flex;
   margin-bottom: 12px;
 }
+
+.hotelsList {
+  max-height: 529px;
+  overflow-y: scroll;
+}

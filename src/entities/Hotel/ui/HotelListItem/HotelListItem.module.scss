@@ -1,0 +1,16 @@
+.hotelListItem {
+  padding: 16px 16px 16px 0;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: 24px;
+}
+
+.hotelData {
+  display: flex;
+  justify-content: space-between;
+}
+
+.HotelInfo {
+  display: flex;
+  flex-direction: column;
+}

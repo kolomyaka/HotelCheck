@@ -1,18 +1,18 @@
 import classNames from 'classnames';
 import cls from './Typography.module.scss';
-import { memo } from 'react';
+import { ReactNode } from 'react';
 
 interface TypographyProps {
-    children: string;
+    children: ReactNode;
     className?: string;
     variant?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
-    color?: 'dark' | 'light' | 'green';
-    size?: 'XL' | 'L' | 'M';
+    color?: 'dark' | 'gray' | 'green';
+    size?: 'XL' | 'L' | 'M' | 'S';
     align?: 'center' | 'left' | 'right';
     weight?: 'medium' | 'regular' | 'light';
 }
 
-export const Typography = memo((props: TypographyProps) => {
+export const Typography = (props: TypographyProps) => {
     const {
         className,
         variant = 'p',
@@ -35,6 +35,6 @@ export const Typography = memo((props: TypographyProps) => {
             {children}
         </Component>
     );
-});
+};
 
 

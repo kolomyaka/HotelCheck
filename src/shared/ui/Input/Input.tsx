@@ -1,33 +1,42 @@
 import classNames from 'classnames';
 import cls from './Input.module.scss';
-import { InputHTMLAttributes, memo } from 'react';
+import React, { InputHTMLAttributes } from 'react';
+import { typedMemo } from 'shared/lib/helpers/typedMemo/typedMemo';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'name'>
 
-interface InputProps extends HTMLInputProps {
+interface InputProps<T extends string> extends HTMLInputProps {
     className?: string;
     label?: string;
-    type?: 'text' | 'date' | 'password' | 'number';
+    type?: 'text' | 'date' | 'password';
     error?: string;
-    name?: string;
+    name?: T;
     value?: string;
-    onChange?: (value: string) => void;
+    onlyNum?: boolean;
+    onChange?: (value: string, name: T) => void;
 }
 
-export const Input = memo((props: InputProps) => {
+const InputComponent = <T extends string>(props: InputProps<T>) => {
     const {
         className,
         value,
         name = 'input',
         label,
         type = 'text',
+        onlyNum = false,
         error,
         onChange,
         ...otherProps
     } = props;
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value);
+        const isNumeric = /^\d+$/.test(e.target.value);
+
+        if (onlyNum && e.target.value !== '' && !isNumeric) {
+            return;
+        }
+
+        onChange?.(e.target.value, e.target.name as T);
     };
 
     return (
@@ -38,6 +47,7 @@ export const Input = memo((props: InputProps) => {
             <input
                 {...otherProps}
                 value={value}
+                name={name}
                 type={type}
                 className={cls.input}
                 onChange={onChangeHandler}
@@ -45,6 +55,8 @@ export const Input = memo((props: InputProps) => {
             {error && <p className={cls.error}>{error}</p>}
         </label>
     );
-});
+};
+
+export const Input = typedMemo(InputComponent);
 
 
