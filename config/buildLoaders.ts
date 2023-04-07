@@ -4,12 +4,11 @@ import { buildCssLoader } from './loaders/buildCssLoader';
 export function buildLoaders(options: BuildOptions) {
 
     const fileLoader = {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /(webp|jpe?g|gif)$/i,
         use: [
-            {
-                loader: 'file-loader',
-            },
-        ],
+            'file-loader',
+            'webp-loader'
+        ]
     };
 
     const svgLoader = {

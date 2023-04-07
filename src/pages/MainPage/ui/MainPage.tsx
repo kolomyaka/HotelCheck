@@ -1,7 +1,9 @@
 import cls from './MainPage.module.scss';
 import classNames from 'classnames';
 import { Header } from 'widgets/Header';
-import { SearchHotelForm } from 'features/SearchHotelForm';
+import { SearchHotelsForm } from 'features/SearchHotelsForm';
+import { FavoritesHotels } from 'widgets/FavoritesHotels/ui/FavoritesHotels';
+import { Hotels } from 'widgets/Hotels';
 
 export const MainPage = () => {
     return (
@@ -9,9 +11,11 @@ export const MainPage = () => {
             <Header />
             <main className={cls.contentWrapper}>
                 <section className={cls.leftSide}>
-                    <SearchHotelForm className={cls.sideWrapper} />
+                    <SearchHotelsForm className={cls.sideWrapper} />
+                    <FavoritesHotels />
                 </section>
                 <section className={cls.rightSide}>
+                    <Hotels />
                 </section>
             </main>
         </div>

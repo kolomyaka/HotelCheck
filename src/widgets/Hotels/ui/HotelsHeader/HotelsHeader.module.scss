@@ -1,0 +1,29 @@
+.hotelsHeader {
+  margin-bottom: 28px;
+}
+
+.hotelsTitle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hotelsHeaderData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.hotelsImages {
+  max-width: 600px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 12px;
+
+  img {
+    border-radius: 10px;
+    box-shadow: 0 3px 4px rgb(0 0 0 / 15%);
+  }
+}

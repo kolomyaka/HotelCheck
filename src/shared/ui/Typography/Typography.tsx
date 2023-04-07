@@ -5,7 +5,7 @@ import { memo } from 'react';
 interface TypographyProps {
     children: string;
     className?: string;
-    variant?: 'p' | 'h1' | 'h2' | 'h3';
+    variant?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
     color?: 'dark' | 'light' | 'green';
     size?: 'XL' | 'L' | 'M';
     align?: 'center' | 'left' | 'right';

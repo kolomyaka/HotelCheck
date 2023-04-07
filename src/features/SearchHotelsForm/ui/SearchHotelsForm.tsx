@@ -9,18 +9,21 @@ interface SearchHotelFormProps {
     className?: string
 }
 
-export const SearchHotelForm = memo(({ className }: SearchHotelFormProps) => {
+export const SearchHotelsForm = memo(({ className }: SearchHotelFormProps) => {
     return (
         <Module className={classNames(cls.searchHotelForm, {}, [className])}>
             <div className={cls.formWrapper}>
                 <Input
+                    className={cls.formInput}
                     label={'Локация'}
                 />
                 <Input
+                    className={cls.formInput}
                     label={'Дата заселения'}
                     type={'date'}
                 />
                 <Input
+                    className={cls.formInput}
                     label={'Количество дней'}
                     type={'number'}
                 />
