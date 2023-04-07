@@ -7,7 +7,7 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 interface InputProps extends HTMLInputProps {
     className?: string;
     label?: string;
-    type?: 'text' | 'date' | 'password';
+    type?: 'text' | 'date' | 'password' | 'number';
     error?: string;
     name?: string;
     value?: string;

@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+}
+
+.logoutWrapper {
+  display: flex;
+  align-items: center;
+  gap:12px;
+  cursor: pointer;
+}
