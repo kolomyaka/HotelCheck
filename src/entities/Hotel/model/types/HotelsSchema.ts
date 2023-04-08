@@ -6,12 +6,18 @@ export interface HotelsSchema extends HotelsData{
 export interface Hotel {
     hotelId: number;
     hotelName: string;
-    price: number;
+    priceAvg: number;
     stars: number;
 }
 
 export interface HotelsData {
     hotelsData: Hotel[];
+    form: SearchHotelsFormData;
+}
+
+export interface SearchHotelsFormData {
+    location: string;
     checkIn: string;
     checkOut: string;
 }
+

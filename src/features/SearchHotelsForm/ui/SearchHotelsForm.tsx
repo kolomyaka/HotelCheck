@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import { getSearchHotelsFormData, getSearchHotelsFormIsLoading } from '../model/selectors/getSearchHotelsFormData';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { searchHotelsFormActions } from '../model/slices/searchHotelsFormSlice';
-import { SearchHotelsFormData } from '../model/types/SearchHotelsFormSchema';
 import moment from 'moment';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { SearchHotelsFormData } from 'entities/Hotel';
 
 interface SearchHotelFormProps {
     className?: string

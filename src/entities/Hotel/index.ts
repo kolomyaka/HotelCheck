@@ -12,9 +12,14 @@ export {
     getHotelsData,
     getHotelsDataCheckOut,
     getHotelsDataCheckIn,
-    getHotelsDataIsLoading
+    getHotelsDataIsLoading,
+    getHotelsDataLocation
 } from './model/selectors/getHotelsData';
 
 export {
     HotelsList
 } from './ui/HotelsList/HotelsList';
+
+export {
+    SearchHotelsFormData
+} from './model/types/HotelsSchema';

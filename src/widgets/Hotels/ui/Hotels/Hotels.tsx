@@ -4,14 +4,15 @@ import { memo } from 'react';
 import { Module } from 'shared/ui/Module/Module';
 import { Typography } from 'shared/ui/Typography/Typography';
 import { HotelsHeader } from '../HotelsHeader/HotelsHeader';
-import { HotelsList } from 'entities/Hotel';
 import { useSelector } from 'react-redux';
 import {
     getHotelsData,
     getHotelsDataCheckIn,
     getHotelsDataCheckOut,
-    getHotelsDataIsLoading
+    getHotelsDataLocation,
+    HotelsList
 } from 'entities/Hotel';
+import { getSearchHotelsFormIsLoading } from 'features/SearchHotelsForm/model/selectors/getSearchHotelsFormData';
 
 interface HotelsProps {
     className?: string
@@ -19,13 +20,17 @@ interface HotelsProps {
 
 export const Hotels = memo(({ className }: HotelsProps) => {
     const hotels = useSelector(getHotelsData);
-    const isLoading = useSelector(getHotelsDataIsLoading);
+    const isLoading = useSelector(getSearchHotelsFormIsLoading);
     const checkIn = useSelector(getHotelsDataCheckIn);
     const checkOut = useSelector(getHotelsDataCheckOut);
+    const location = useSelector(getHotelsDataLocation);
 
     return (
         <Module className={classNames(cls.hotels, {}, [className])}>
-            <HotelsHeader />
+            <HotelsHeader
+                location={location}
+                checkIn={checkIn}
+            />
             <div className={cls.favoritesCount}>
                 <Typography variant={'p'}>
                     <span>Добавлено в Избранное:</span>

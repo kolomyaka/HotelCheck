@@ -35,10 +35,17 @@ export const HotelsList = memo((props: HotelsListProps) => {
         return <Typography>Нет результатов</Typography>;
     }
 
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.hotelsList, {}, [className])}>
+                {isLoading&&<Typography>Идет загрузка</Typography>}
+            </div>
+        );
+    }
+
     return (
         <div className={classNames(cls.hotelsList, {}, [className])}>
             {hotels.map(renderHotelItem)}
-            {isLoading&&<Typography>Идет загрузка...</Typography>}
         </div>
     );
 });

@@ -6,9 +6,12 @@ import slide1 from 'shared/assets/images/slide_1.webp';
 import slide2 from 'shared/assets/images/slide_2.webp';
 import slide3 from 'shared/assets/images/slide_3.webp';
 import slide4 from 'shared/assets/images/slide_4.webp';
+import moment from 'moment';
 
 interface HotelsHeaderProps {
-    className?: string
+    className?: string;
+    location: string;
+    checkIn: string;
 }
 
 const imagesSlider = [
@@ -18,7 +21,14 @@ const imagesSlider = [
     slide4
 ];
 
-export const HotelsHeader = memo(({ className }: HotelsHeaderProps) => {
+export const HotelsHeader = memo((props: HotelsHeaderProps) => {
+    const {
+        className,
+        location,
+        checkIn
+    } = props;
+
+
     return (
         <div className={cls.hotelsHeader}>
             <div className={cls.hotelsHeaderData}>
@@ -36,14 +46,14 @@ export const HotelsHeader = memo(({ className }: HotelsHeaderProps) => {
                         variant={'h3'}
                         size={'XL'}
                     >
-                        Москва
+                        {location}
                     </Typography>
                 </div>
                 <div className={cls.hotelsDate}>
                     <Typography
                         size={'L'}
                     >
-                        07 июля 2020
+                        {moment(checkIn).format('DD MMMM YYYY')}
                     </Typography>
                 </div>
             </div>

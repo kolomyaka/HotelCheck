@@ -8,9 +8,39 @@
 .hotelData {
   display: flex;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
-.HotelInfo {
+.hotelName {
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hotelInfo {
+  max-width: 350px;
   display: flex;
   flex-direction: column;
 }
+
+.dash {
+  margin: 0 10px;
+}
+
+.datesInfo {
+  margin-bottom: 5px;
+}
+
+.hotelRightSide {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hotelPrice {
+  span {
+    margin-left: 8px;
+  }
+}
+
+

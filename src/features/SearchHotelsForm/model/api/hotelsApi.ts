@@ -1,6 +1,5 @@
 import { $api } from 'shared/api/api';
-import { SearchHotelsFormData } from '../types/SearchHotelsFormSchema';
-import { Hotel } from 'entities/Hotel';
+import { Hotel, SearchHotelsFormData } from 'entities/Hotel';
 
 export const hotelsApi = {
     async fetchHotels(params: SearchHotelsFormData): Promise<Hotel[]> {

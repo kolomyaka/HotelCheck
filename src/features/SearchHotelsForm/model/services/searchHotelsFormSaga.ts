@@ -1,11 +1,9 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { searchHotelsFormActions } from '../slices/searchHotelsFormSlice';
-import { SearchHotelsFormData } from '../types/SearchHotelsFormSchema';
 import { SagaIterator } from 'redux-saga';
 import { hotelsApi } from '../api/hotelsApi';
-import { hotelsActions } from 'entities/Hotel';
-
+import { hotelsActions, SearchHotelsFormData } from 'entities/Hotel';
 
 
 function* workSearchHotelsData({ payload }: PayloadAction<SearchHotelsFormData>): SagaIterator {
@@ -16,8 +14,11 @@ function* workSearchHotelsData({ payload }: PayloadAction<SearchHotelsFormData>)
             yield put(searchHotelsFormActions.searchHotelsSuccess());
             yield put(hotelsActions.setHotelsData({
                 hotelsData: data,
-                checkIn: payload.checkIn,
-                checkOut: payload.checkOut
+                form: {
+                    checkIn: payload.checkIn,
+                    checkOut: payload.checkOut,
+                    location: payload.location
+                }
             }));
         }
     } catch (err) {

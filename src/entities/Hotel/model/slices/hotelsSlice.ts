@@ -1,11 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HotelsData, HotelsSchema } from '../types/HotelsSchema';
+import moment from 'moment';
 
 
 const initialState: HotelsSchema = {
     hotelsData: [],
-    checkIn: '',
-    checkOut: '',
+    form: {
+        checkIn: moment().format('YYYY-MM-DD'),
+        checkOut: '',
+        location: 'Москва',
+    },
     isLoading: false,
     error: undefined,
 };
@@ -16,8 +20,7 @@ export const hotelsSlice = createSlice({
     reducers: {
         setHotelsData: (state, action: PayloadAction<HotelsData>) => {
             state.hotelsData = action.payload.hotelsData;
-            state.checkIn = action.payload.checkIn;
-            state.checkOut = action.payload.checkOut;
+            state.form = action.payload.form;
         }
     },
 });
