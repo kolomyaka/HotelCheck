@@ -11,6 +11,8 @@ interface HotelsListProps {
     isLoading: boolean;
     checkIn: string;
     checkOutDays: string;
+    view?: 'small' | 'default';
+    onFavoriteClick: (hotel: Hotel) => void;
 }
 
 export const HotelsList = memo((props: HotelsListProps) => {
@@ -19,17 +21,21 @@ export const HotelsList = memo((props: HotelsListProps) => {
         isLoading,
         hotels,
         checkIn,
-        checkOutDays
+        view = 'default',
+        checkOutDays,
+        onFavoriteClick
     } = props;
 
     const renderHotelItem = useCallback((hotel: Hotel) => (
         <HotelListItem
+            onFavoriteClick={onFavoriteClick}
+            view={view}
             hotel={hotel}
             key={hotel.hotelId}
             checkIn={checkIn}
             checkOutDays={checkOutDays}
         />
-    ), [checkIn, checkOutDays]);
+    ), [checkIn, checkOutDays, onFavoriteClick, view]);
 
     if (!isLoading && !hotels.length) {
         return <Typography>Нет результатов</Typography>;

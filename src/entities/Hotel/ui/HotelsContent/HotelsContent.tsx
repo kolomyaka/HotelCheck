@@ -1,26 +1,32 @@
 import classNames from 'classnames';
-import cls from './Hotels.module.scss';
+import cls from './HotelsContent.module.scss';
 import { memo } from 'react';
-import { Module } from 'shared/ui/Module/Module';
-import { Typography } from 'shared/ui/Typography/Typography';
 import { HotelsHeader } from '../HotelsHeader/HotelsHeader';
+import { Module } from 'shared/ui/Module/Module';
 import { useSelector } from 'react-redux';
+import { HotelsList } from '../HotelsList/HotelsList';
 import {
     getHotelsData,
     getHotelsDataCheckIn,
     getHotelsDataCheckOut,
     getHotelsDataLocation,
-    HotelsList
-} from 'entities/Hotel';
-import { getSearchHotelsFormIsLoading } from 'features/SearchHotelsForm/model/selectors/getSearchHotelsFormData';
+} from '../../model/selectors/getHotelsData';
+import { HotelsFavoritesCount } from '../HotelsFavoritesCount/HotelsFavoritesCount';
+import { Hotel } from 'entities/Hotel';
 
-interface HotelsProps {
-    className?: string
+interface HotelsComponentProps {
+    className?: string;
+    isLoading: boolean;
+    onFavoriteClick: (hotel: Hotel) => void;
 }
 
-export const Hotels = memo(({ className }: HotelsProps) => {
+export const HotelsContent = memo((props: HotelsComponentProps) => {
+    const {
+        className,
+        isLoading,
+        onFavoriteClick
+    } = props;
     const hotels = useSelector(getHotelsData);
-    const isLoading = useSelector(getSearchHotelsFormIsLoading);
     const checkIn = useSelector(getHotelsDataCheckIn);
     const checkOut = useSelector(getHotelsDataCheckOut);
     const location = useSelector(getHotelsDataLocation);
@@ -31,14 +37,9 @@ export const Hotels = memo(({ className }: HotelsProps) => {
                 location={location}
                 checkIn={checkIn}
             />
-            <div className={cls.favoritesCount}>
-                <Typography variant={'p'}>
-                    <span>Добавлено в Избранное:</span>
-                    <span>3</span>
-                    <span>отеля</span>
-                </Typography>
-            </div>
+            <HotelsFavoritesCount />
             <HotelsList
+                onFavoriteClick={onFavoriteClick}
                 hotels={hotels}
                 checkIn={checkIn}
                 checkOutDays={checkOut}

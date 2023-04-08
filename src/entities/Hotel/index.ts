@@ -9,17 +9,13 @@ export {
 } from './model/types/HotelsSchema';
 
 export {
-    getHotelsData,
-    getHotelsDataCheckOut,
-    getHotelsDataCheckIn,
-    getHotelsDataIsLoading,
-    getHotelsDataLocation
-} from './model/selectors/getHotelsData';
-
-export {
     HotelsList
 } from './ui/HotelsList/HotelsList';
 
 export {
     SearchHotelsFormData
 } from './model/types/HotelsSchema';
+
+export {
+    HotelsContent
+} from './ui/HotelsContent/HotelsContent';

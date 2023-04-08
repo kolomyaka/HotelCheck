@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import cls from './Typography.module.scss';
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
 interface TypographyProps {
     children: ReactNode;
@@ -12,7 +12,7 @@ interface TypographyProps {
     weight?: 'medium' | 'regular' | 'light';
 }
 
-export const Typography = (props: TypographyProps) => {
+export const Typography = memo((props: TypographyProps) => {
     const {
         className,
         variant = 'p',
@@ -35,6 +35,6 @@ export const Typography = (props: TypographyProps) => {
             {children}
         </Component>
     );
-};
+});
 
 

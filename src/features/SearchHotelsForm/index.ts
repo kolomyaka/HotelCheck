@@ -14,3 +14,7 @@ export {
 export {
     default
 } from './model/services/searchHotelsFormSaga';
+
+export {
+    getSearchHotelsFormIsLoading
+} from './model/selectors/getSearchHotelsFormData';

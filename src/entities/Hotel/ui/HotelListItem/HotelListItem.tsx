@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import cls from './HotelListItem.module.scss';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Hotel } from 'entities/Hotel';
 import HotelIcon from 'shared/assets/icons/hotelIcon.svg';
 import { Typography } from 'shared/ui/Typography/Typography';
@@ -12,23 +12,29 @@ import FavoriteIcon from 'shared/assets/icons/favoriteIcon.svg';
 interface HotelListItemProps {
     className?: string;
     hotel: Hotel;
-    withPhoto?: boolean;
     checkIn: string;
     checkOutDays: string;
+    view: 'small' | 'default';
+    onFavoriteClick: (hotel: Hotel) => void;
 }
 
 export const HotelListItem = memo((props: HotelListItemProps) => {
     const {
         className,
-        withPhoto = true,
         hotel,
         checkIn,
-        checkOutDays
+        checkOutDays,
+        view,
+        onFavoriteClick
     } = props;
 
+    const onFavoriteClickHandler = useCallback(() => {
+        onFavoriteClick?.(hotel);
+    }, [hotel, onFavoriteClick]);
+
     return (
-        <div className={classNames(cls.hotelListItem, {}, [className])}>
-            {withPhoto&&<HotelIcon/>}
+        <div className={classNames(cls.hotelListItem, {}, [className, cls[view]])}>
+            {view === 'default' && <HotelIcon/>}
             <div className={cls.hotelData}>
                 <div className={cls.hotelInfo}>
                     <Typography className={cls.hotelName} weight={'light'}>{hotel.hotelName}</Typography>
@@ -40,7 +46,10 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
                     <StarsGroup stars={hotel.stars} />
                 </div>
                 <div className={classNames(cls.hotelInfo, {}, [cls.hotelRightSide])}>
-                    <FavoriteIcon />
+                    <FavoriteIcon
+                        className={classNames(cls.favoriteIcon)}
+                        onClick={onFavoriteClickHandler}
+                    />
                     <Typography
                         className={cls.hotelPrice}
                         weight={'light'}
@@ -54,6 +63,7 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
             </div>
         </div>
     );
+    
 });
 
 

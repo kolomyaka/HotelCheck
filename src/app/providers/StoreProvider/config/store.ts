@@ -8,18 +8,20 @@ import { loginReducer } from 'features/AuthByEmail';
 import { userReducer } from 'entities/User';
 import { searchHotelsFormReducer } from 'features/SearchHotelsForm';
 import { hotelsReducer } from 'entities/Hotel';
+import { favoriteHotelsReducer } from 'features/favoriteHotels';
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user']
+    whitelist: ['user', 'favoriteHotels']
 };
 
 const rootReducer = combineReducers<StateSchema>({
     login: loginReducer,
     user: userReducer,
     searchHotels: searchHotelsFormReducer,
-    hotelsData: hotelsReducer
+    hotelsData: hotelsReducer,
+    favoriteHotels: favoriteHotelsReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

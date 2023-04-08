@@ -1,8 +1,57 @@
-.hotelListItem {
-  padding: 16px 16px 16px 0;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  gap: 24px;
+// Default View
+.default {
+  &.hotelListItem {
+    padding: 16px 16px 16px 0;
+    gap: 24px;
+  }
+
+  .hotelInfo {
+    max-width: 350px;
+  }
+
+  .hotelName {
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dash {
+    margin: 0 10px;
+  }
+
+  .datesInfo {
+    margin-bottom: 5px;
+  }
+}
+
+// Small view
+.small {
+  .hotelName {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.hotelListItem {
+    padding: 16px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+}
+
+// Common styles
+.hotelRightSide {
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .hotelData {
@@ -11,35 +60,39 @@
   flex-grow: 1;
 }
 
-.hotelName {
-  max-width: 350px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .hotelInfo {
-  max-width: 350px;
   display: flex;
   flex-direction: column;
-}
-
-.dash {
-  margin: 0 10px;
-}
-
-.datesInfo {
-  margin-bottom: 5px;
-}
-
-.hotelRightSide {
-  justify-content: space-between;
-  align-items: flex-end;
 }
 
 .hotelPrice {
   span {
     margin-left: 8px;
+  }
+}
+
+.hotelListItem {
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.favoriteIcon {
+  cursor: pointer;
+
+  :hover {
+    fill: #EBEBEB;
+  }
+
+  &.active {
+    fill: #E55858;
+
+    path {
+      stroke: #E55858;
+    }
   }
 }
 
