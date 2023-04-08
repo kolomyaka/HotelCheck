@@ -4,16 +4,26 @@ import classNames from 'classnames';
 import { Header } from 'widgets/Header';
 import { getSearchHotelsFormIsLoading, SearchHotelsForm } from 'features/SearchHotelsForm';
 import { Hotel, HotelsContent } from 'entities/Hotel';
-import { FavoriteHotels, favoriteHotelsActions } from 'features/favoriteHotels';
+import { FavoriteHotels, favoriteHotelsActions, getFavoriteHotels } from 'features/favoriteHotels';
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getSearchHotelsFormIsLoading);
-    const favoriteClickHandler = useCallback((hotel: Hotel) => {
-        dispatch(favoriteHotelsActions.addToFavorite(hotel));
-    }, [dispatch]);
+    const favoriteHotelsIds = useSelector(getFavoriteHotels.selectIds);
+    
+    const favoriteClickHandler = useCallback((hotel: Hotel, checkIn: string, checkOutDays: string) => {
+        if (favoriteHotelsIds.includes(hotel.hotelId)) {
+            dispatch(favoriteHotelsActions.removeFromFavorite(hotel.hotelId));
+        } else {
+            dispatch(favoriteHotelsActions.addToFavorite({
+                ...hotel,
+                checkIn,
+                checkOut: checkOutDays
+            }));
+        }
+    }, [dispatch, favoriteHotelsIds]);
 
     return (
         <div className={classNames(cls.mainPage)}>
@@ -27,6 +37,7 @@ export const MainPage = () => {
                 </section>
                 <section className={cls.rightSide}>
                     <HotelsContent
+                        favoriteHotelsIds={favoriteHotelsIds}
                         onFavoriteClick={favoriteClickHandler}
                         isLoading={isLoading}
                     />

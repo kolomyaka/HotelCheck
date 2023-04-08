@@ -1,15 +1,16 @@
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import cls from './FavoriteHotels.module.scss';
 import { memo } from 'react';
 import { Module } from 'shared/ui/Module/Module';
 import { Typography } from 'shared/ui/Typography/Typography';
-import { Hotel, HotelsList } from 'entities/Hotel';
-import { useSelector } from 'react-redux';
-import { getFavoriteHotels } from 'features/favoriteHotels/model/slices/favoriteHotelsSlice';
+import { Hotel } from 'entities/Hotel';
+import { getFavoriteHotels } from '../../model/slices/favoriteHotelsSlice';
+import { FavoriteList } from '../FavoriteList/FavoriteList';
 
 interface FavoriteHotelsProps {
     className?: string;
-    onFavoriteClick: (hotel: Hotel) => void;
+    onFavoriteClick: (hotel: Hotel, checkIn: string, checkOutDays: string) => void;
 }
 
 export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
@@ -17,7 +18,9 @@ export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
         className,
         onFavoriteClick
     } = props;
+
     const hotels = useSelector(getFavoriteHotels.selectAll);
+    const favoriteHotelsIds = useSelector(getFavoriteHotels.selectIds);
 
     return (
         <Module className={classNames(cls.favoriteHotels, {}, [className])}>
@@ -28,14 +31,13 @@ export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
                 size={'L'}
             >Избранное</Typography>
 
-            <HotelsList
+            <FavoriteList
+                favoriteHotelsIds={favoriteHotelsIds}
                 onFavoriteClick={onFavoriteClick}
                 className={cls.favoriteHotelsList}
                 view={'small'}
                 hotels={hotels}
                 isLoading={false}
-                checkIn={''}
-                checkOutDays={''}
             />
         </Module>
     );

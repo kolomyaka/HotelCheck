@@ -9,13 +9,13 @@ export {
 } from './model/types/HotelsSchema';
 
 export {
-    HotelsList
-} from './ui/HotelsList/HotelsList';
-
-export {
     SearchHotelsFormData
 } from './model/types/HotelsSchema';
 
 export {
     HotelsContent
 } from './ui/HotelsContent/HotelsContent';
+
+export {
+    HotelListItem
+} from './ui/HotelListItem/HotelListItem';

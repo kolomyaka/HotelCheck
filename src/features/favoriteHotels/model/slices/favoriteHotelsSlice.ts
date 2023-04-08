@@ -1,5 +1,5 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { FavoriteHotelsSchema } from '../types/FavoriteHotelsSchema';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { FavoriteHotel, FavoriteHotelsSchema } from '../types/FavoriteHotelsSchema';
 import { Hotel } from 'entities/Hotel';
 import { StateSchema } from 'app/providers/StoreProvider';
 
@@ -9,7 +9,7 @@ const initialState: FavoriteHotelsSchema = {
     entities: {}
 };
 
-const favoriteHotelsAdapter = createEntityAdapter<Hotel>({
+const favoriteHotelsAdapter = createEntityAdapter<FavoriteHotel>({
     selectId: (hotel) => hotel.hotelId
 });
 
@@ -22,9 +22,12 @@ export const favoriteHotelsSlice = createSlice({
     name: 'favoriteHotels',
     initialState,
     reducers: {
-        addToFavorite: (state, action) => {
+        addToFavorite: (state, action: PayloadAction<FavoriteHotel>) => {
             favoriteHotelsAdapter.addOne(state, action.payload);
         },
+        removeFromFavorite: (state, action: PayloadAction<number>) => {
+            favoriteHotelsAdapter.removeOne(state, action.payload);
+        }
     },
 });
 

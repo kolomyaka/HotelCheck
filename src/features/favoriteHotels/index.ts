@@ -4,7 +4,8 @@ export {
 
 export {
     favoriteHotelsActions,
-    favoriteHotelsReducer
+    favoriteHotelsReducer,
+    getFavoriteHotels
 } from './model/slices/favoriteHotelsSlice';
 
 export {

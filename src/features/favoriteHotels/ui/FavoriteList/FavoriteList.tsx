@@ -1,45 +1,41 @@
 import classNames from 'classnames';
-import cls from './HotelsList.module.scss';
+import cls from './FavoriteList.module.scss';
 import { memo, useCallback } from 'react';
-import { Hotel } from 'entities/Hotel';
+import { Hotel, HotelListItem } from 'entities/Hotel';
 import { Typography } from 'shared/ui/Typography/Typography';
-import { HotelListItem } from '../HotelListItem/HotelListItem';
 import { EntityId } from '@reduxjs/toolkit';
+import { FavoriteHotel } from 'features/favoriteHotels/model/types/FavoriteHotelsSchema';
 
-interface HotelsListProps {
+interface FavoriteListProps {
     className?: string
-    hotels: Hotel[]
+    hotels: FavoriteHotel[]
     isLoading: boolean;
-    checkIn: string;
-    checkOutDays: string;
     view?: 'small' | 'default';
     onFavoriteClick: (hotel: Hotel, checkIn: string, checkOutDays: string) => void;
     favoriteHotelsIds: EntityId[];
 }
 
-export const HotelsList = memo((props: HotelsListProps) => {
+export const FavoriteList = memo((props: FavoriteListProps) => {
     const {
         className,
         isLoading,
         hotels,
-        checkIn,
         view = 'default',
-        checkOutDays,
         favoriteHotelsIds,
         onFavoriteClick
     } = props;
 
-    const renderHotelItem = useCallback((hotel: Hotel) => (
+    const renderHotelItem = useCallback((hotel: FavoriteHotel) => (
         <HotelListItem
             favoriteHotelsIds={favoriteHotelsIds}
             onFavoriteClick={onFavoriteClick}
             view={view}
             hotel={hotel}
             key={hotel.hotelId}
-            checkIn={checkIn}
-            checkOutDays={checkOutDays}
+            checkIn={hotel.checkIn}
+            checkOutDays={hotel.checkOut}
         />
-    ), [checkIn, checkOutDays, favoriteHotelsIds, onFavoriteClick, view]);
+    ), [favoriteHotelsIds, onFavoriteClick, view]);
 
     if (!isLoading && !hotels.length) {
         return <Typography>Нет результатов</Typography>;

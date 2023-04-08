@@ -13,17 +13,20 @@ import {
 } from '../../model/selectors/getHotelsData';
 import { HotelsFavoritesCount } from '../HotelsFavoritesCount/HotelsFavoritesCount';
 import { Hotel } from 'entities/Hotel';
+import { EntityId } from '@reduxjs/toolkit';
 
 interface HotelsComponentProps {
     className?: string;
     isLoading: boolean;
-    onFavoriteClick: (hotel: Hotel) => void;
+    onFavoriteClick: (hotel: Hotel, checkIn:string, checkOutDays:string) => void;
+    favoriteHotelsIds: EntityId[];
 }
 
 export const HotelsContent = memo((props: HotelsComponentProps) => {
     const {
         className,
         isLoading,
+        favoriteHotelsIds,
         onFavoriteClick
     } = props;
     const hotels = useSelector(getHotelsData);
@@ -39,6 +42,7 @@ export const HotelsContent = memo((props: HotelsComponentProps) => {
             />
             <HotelsFavoritesCount />
             <HotelsList
+                favoriteHotelsIds={favoriteHotelsIds}
                 onFavoriteClick={onFavoriteClick}
                 hotels={hotels}
                 checkIn={checkIn}

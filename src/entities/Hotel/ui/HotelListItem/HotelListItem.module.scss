@@ -83,7 +83,7 @@
 .favoriteIcon {
   cursor: pointer;
 
-  :hover {
+  &:hover:not(.active) {
     fill: #EBEBEB;
   }
 

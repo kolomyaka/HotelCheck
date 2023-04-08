@@ -8,6 +8,7 @@ import { usualDate } from 'shared/lib/helpers/usualDate/usualDate';
 import { betweenDates } from 'shared/lib/helpers/betweenDates/betweenDates';
 import { StarsGroup } from '../StarsGroup/StarsGroup';
 import FavoriteIcon from 'shared/assets/icons/favoriteIcon.svg';
+import { EntityId } from '@reduxjs/toolkit';
 
 interface HotelListItemProps {
     className?: string;
@@ -15,7 +16,8 @@ interface HotelListItemProps {
     checkIn: string;
     checkOutDays: string;
     view: 'small' | 'default';
-    onFavoriteClick: (hotel: Hotel) => void;
+    onFavoriteClick: (hotel: Hotel, checkIn: string, checkOutDays: string) => void;
+    favoriteHotelsIds: EntityId[];
 }
 
 export const HotelListItem = memo((props: HotelListItemProps) => {
@@ -25,12 +27,13 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
         checkIn,
         checkOutDays,
         view,
+        favoriteHotelsIds,
         onFavoriteClick
     } = props;
 
     const onFavoriteClickHandler = useCallback(() => {
-        onFavoriteClick?.(hotel);
-    }, [hotel, onFavoriteClick]);
+        onFavoriteClick?.(hotel, checkIn, checkOutDays);
+    }, [checkIn, checkOutDays, hotel, onFavoriteClick]);
 
     return (
         <div className={classNames(cls.hotelListItem, {}, [className, cls[view]])}>
@@ -47,7 +50,10 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
                 </div>
                 <div className={classNames(cls.hotelInfo, {}, [cls.hotelRightSide])}>
                     <FavoriteIcon
-                        className={classNames(cls.favoriteIcon)}
+                        className={classNames(
+                            cls.favoriteIcon,
+                            { [cls.active]: favoriteHotelsIds.includes(hotel.hotelId) }
+                        )}
                         onClick={onFavoriteClickHandler}
                     />
                     <Typography
