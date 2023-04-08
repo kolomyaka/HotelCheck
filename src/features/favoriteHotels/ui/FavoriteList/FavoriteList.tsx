@@ -38,7 +38,7 @@ export const FavoriteList = memo((props: FavoriteListProps) => {
     ), [favoriteHotelsIds, onFavoriteClick, view]);
 
     if (!isLoading && !hotels.length) {
-        return <Typography>Нет результатов</Typography>;
+        return <Typography align={'center'}>Нет результатов</Typography>;
     }
 
     if (isLoading) {

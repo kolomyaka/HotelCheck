@@ -7,6 +7,9 @@ import { Typography } from 'shared/ui/Typography/Typography';
 import { Hotel } from 'entities/Hotel';
 import { getFavoriteHotels } from '../../model/slices/favoriteHotelsSlice';
 import { FavoriteList } from '../FavoriteList/FavoriteList';
+import {
+    FavoriteHotelsFilterGroup
+} from 'features/favoriteHotels/ui/FavoriteHotelsFilterGroup/FavoriteHotelsFilterGroup';
 
 interface FavoriteHotelsProps {
     className?: string;
@@ -30,7 +33,7 @@ export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
                 variant={'h3'}
                 size={'L'}
             >Избранное</Typography>
-
+            <FavoriteHotelsFilterGroup className={cls.favoriteHotelsFilter} />
             <FavoriteList
                 favoriteHotelsIds={favoriteHotelsIds}
                 onFavoriteClick={onFavoriteClick}

@@ -1,0 +1,17 @@
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: 1px solid var(--sort-border-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.sortIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+  padding: 3px 4.5px;
+  fill:rgb(65 82 46 / 30%)
+}

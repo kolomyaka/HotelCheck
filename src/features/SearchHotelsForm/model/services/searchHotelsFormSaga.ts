@@ -22,6 +22,7 @@ function* workSearchHotelsData({ payload }: PayloadAction<SearchHotelsFormData>)
             }));
         }
     } catch (err) {
+        // TODO: Можно добавить отображение ошибок в форме
         const error = err.response.data.message;
         const errorField = error.split(':')[0];
         const errorMessage = error.split(':')[1];
