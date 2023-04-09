@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HotelsData, HotelsSchema } from '../types/HotelsSchema';
+import { HotelsData, HotelsSchema, SearchHotelsFormData } from '../types/HotelsSchema';
 import moment from 'moment';
 
 
@@ -21,6 +21,10 @@ export const hotelsSlice = createSlice({
         setHotelsData: (state, action: PayloadAction<HotelsData>) => {
             state.hotelsData = action.payload.hotelsData;
             state.form = action.payload.form;
+        },
+        fetchHotelsDataRejected: (state, action: PayloadAction<SearchHotelsFormData>) => {
+            state.hotelsData = [];
+            state.form = { ...action.payload };
         }
     },
 });

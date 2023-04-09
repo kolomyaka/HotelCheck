@@ -22,13 +22,11 @@ function* workSearchHotelsData({ payload }: PayloadAction<SearchHotelsFormData>)
             }));
         }
     } catch (err) {
-        // TODO: Можно добавить отображение ошибок в форме
-        const error = err.response.data.message;
-        const errorField = error.split(':')[0];
-        const errorMessage = error.split(':')[1];
-        yield put(searchHotelsFormActions.searchHotelsError({
-            field: errorField,
-            data: errorMessage
+        yield put(searchHotelsFormActions.searchHotelsError());
+        yield put(hotelsActions.fetchHotelsDataRejected({
+            checkIn: payload.checkIn,
+            checkOut: payload.checkOut,
+            location: payload.location
         }));
     }
 }

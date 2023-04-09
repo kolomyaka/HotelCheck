@@ -30,10 +30,8 @@ export const searchHotelsFormSlice = createSlice({
         searchHotelsSuccess: (state) => {
             state.isLoading = false;
         },
-        // TODO: Можно добавить отображение ошибок в форме
-        searchHotelsError: (state, action: PayloadAction<FormPayload>) => {
+        searchHotelsError: (state) => {
             state.isLoading = false;
-            state.error[action.payload.field] = action.payload.data;
         }
     },
 });

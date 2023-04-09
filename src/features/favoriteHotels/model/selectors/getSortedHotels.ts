@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { createSelector } from '@reduxjs/toolkit';
-import { getFavoriteHotelsData } from 'features/favoriteHotels/model/selectors/getFavoriteHotelsData';
+import { getFavoriteHotelsData } from './getFavoriteHotelsData';
 import orderBy from 'lodash/orderBy';
 
 export const getSortedType = (state:StateSchema) => state.favoriteHotels.sortBy;

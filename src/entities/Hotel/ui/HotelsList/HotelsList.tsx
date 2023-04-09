@@ -5,6 +5,7 @@ import { Hotel } from 'entities/Hotel';
 import { Typography } from 'shared/ui/Typography/Typography';
 import { HotelListItem } from '../HotelListItem/HotelListItem';
 import { EntityId } from '@reduxjs/toolkit';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 interface HotelsListProps {
     className?: string
@@ -42,13 +43,19 @@ export const HotelsList = memo((props: HotelsListProps) => {
     ), [checkIn, checkOutDays, favoriteHotelsIds, onFavoriteClick, view]);
 
     if (!isLoading && !hotels.length) {
-        return <Typography>Нет результатов</Typography>;
+        return <div className={cls.hotelsList}>
+            <Typography
+                align={'center'}
+                size={'XL'}
+                className={cls.hotelsListEmpty}
+            >Нет результатов</Typography>
+        </div>;
     }
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.hotelsList, {}, [className])}>
-                {isLoading&&<Typography>Идет загрузка</Typography>}
+            <div className={classNames(cls.hotelsList, {}, [className, cls.loading])}>
+                {isLoading&&<Loader />}
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import { LoginPage } from 'pages/LoginPage';
 import { MainPage } from 'pages/MainPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -32,6 +33,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     // last
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
-        element: <></>
+        element: <NotFoundPage />
     }
 };

@@ -9,7 +9,6 @@ import slide4 from 'shared/assets/images/slide_4.webp';
 import moment from 'moment';
 
 interface HotelsHeaderProps {
-    className?: string;
     location: string;
     checkIn: string;
 }
@@ -23,7 +22,6 @@ const imagesSlider = [
 
 export const HotelsHeader = memo((props: HotelsHeaderProps) => {
     const {
-        className,
         location,
         checkIn
     } = props;
@@ -42,6 +40,7 @@ export const HotelsHeader = memo((props: HotelsHeaderProps) => {
                     </Typography>
                     <ArrowIcon />
                     <Typography
+                        className={cls.locationName}
                         weight={'medium'}
                         variant={'h3'}
                         size={'XL'}

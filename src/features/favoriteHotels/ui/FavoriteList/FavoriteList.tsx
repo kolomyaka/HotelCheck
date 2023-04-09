@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import cls from './FavoriteList.module.scss';
 import { memo, useCallback } from 'react';
 import { Hotel, HotelListItem } from 'entities/Hotel';
 import { Typography } from 'shared/ui/Typography/Typography';
-import { FavoriteHotel } from 'features/favoriteHotels/model/types/FavoriteHotelsSchema';
+import { FavoriteHotel } from '../../model/types/FavoriteHotelsSchema';
 
 interface FavoriteListProps {
     className?: string
@@ -42,14 +41,14 @@ export const FavoriteList = memo((props: FavoriteListProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.hotelsList, {}, [className])}>
+            <div className={classNames('', {}, [className])}>
                 {isLoading&&<Typography>Идет загрузка</Typography>}
             </div>
         );
     }
 
     return (
-        <div className={classNames(cls.hotelsList, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             {hotels.map(renderHotelItem)}
         </div>
     );

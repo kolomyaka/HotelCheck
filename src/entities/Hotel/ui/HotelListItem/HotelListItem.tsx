@@ -47,26 +47,6 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
             <div className={cls.hotelData}>
                 <div className={cls.hotelInfo}>
                     <Typography className={cls.hotelName} weight={'light'}>{hotel.hotelName}</Typography>
-                    <div className={cls.datesInfo}>
-                        <Typography
-                            {...DatesTypographyComponent}
-                        >
-                            {usualDate(checkIn)}</Typography>
-                        <Typography
-                            {...DatesTypographyComponent}
-                            className={cls.dash}
-                        >
-                            —
-                        </Typography>
-                        <Typography
-                            {...DatesTypographyComponent}
-                        >
-                            {betweenDates(checkOutDays, checkIn)}
-                        </Typography>
-                    </div>
-                    <StarsGroup stars={hotel.stars} />
-                </div>
-                <div className={classNames(cls.hotelInfo, {}, [cls.hotelRightSide])}>
                     <FavoriteIcon
                         className={classNames(
                             cls.favoriteIcon,
@@ -74,7 +54,27 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
                         )}
                         onClick={onFavoriteClickHandler}
                     />
-                    <div className={cls.hotelPrice}>
+                </div>
+                <div className={classNames(cls.datesInfo, {}, [cls.hotelRightSide])}>
+                    <Typography
+                        {...DatesTypographyComponent}
+                    >
+                        {usualDate(checkIn)}</Typography>
+                    <Typography
+                        {...DatesTypographyComponent}
+                        className={cls.dash}
+                    >
+                        —
+                    </Typography>
+                    <Typography
+                        {...DatesTypographyComponent}
+                    >
+                        {betweenDates(checkOutDays, checkIn)}
+                    </Typography>
+                </div>
+                <div className={cls.hotelPrice}>
+                    <StarsGroup stars={hotel.stars} />
+                    <div className={cls.price}>
                         <Typography
                             weight={'light'}
                             size={'S'}
@@ -82,7 +82,7 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
                             variant={'p'}
                         >Price:
                         </Typography>
-                        <Typography variant={'span'} color={'dark'}>{hotel.priceAvg} ₽</Typography>
+                        <Typography variant={'span'} color={'dark'}>{hotel.priceAvg.toFixed()} ₽</Typography>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
 
     const hotels = useSelector(getSortedHotels);
     const favoriteHotelsIds = useSelector(getFavoriteHotelsIds);
-    console.log(hotels, 'HOTELS');
+
     return (
         <Module className={classNames(cls.favoriteHotels, {}, [className])}>
             <Typography

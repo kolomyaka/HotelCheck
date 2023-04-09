@@ -5,8 +5,8 @@ import { SortButton } from 'shared/ui/SortButton/SortButton';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getSortedType } from '../../model/selectors/getSortedHotels';
-import { favoriteHotelsActions } from 'features/favoriteHotels';
-import { SortBy } from 'features/favoriteHotels/model/types/FavoriteHotelsSchema';
+import { favoriteHotelsActions } from '../../model/slices/favoriteHotelsSlice';
+import { SortBy } from '../../model/types/FavoriteHotelsSchema';
 import { OrderBy } from 'shared/types/OrderBy';
 
 interface FavoriteHotelsFilterGroupProps {
