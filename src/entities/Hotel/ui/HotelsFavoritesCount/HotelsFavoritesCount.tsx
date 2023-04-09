@@ -1,22 +1,28 @@
 import cls from './HotelsFavoritesCount.module.scss';
 import { memo } from 'react';
-import { Typography } from 'shared/ui/Typography/Typography';
+import { Typography, TypographyProps } from 'shared/ui/Typography/Typography';
+import { declOfNum } from 'shared/lib/helpers/declOfNum/declOfNum';
 
 interface HotelsFavoritesCountProps {
-    className?: string
+    count: number;
 }
 
-export const HotelsFavoritesCount = memo(({ className }: HotelsFavoritesCountProps) => {
+export const HotelsFavoritesCount = memo(({ count }: HotelsFavoritesCountProps) => {
+    const favoriteHotelsText: Omit<TypographyProps, 'children'> = {
+        variant: 'span',
+        weight: 'light'
+    };
+
     return (
         <div className={cls.favoritesCount}>
-            <Typography variant={'span'}>
-                Добавлено в избранное
+            <Typography {...favoriteHotelsText}>
+                Добавлено в избранное:
             </Typography>
             <Typography variant={'span'}>
-                3
+                {count}
             </Typography>
-            <Typography variant={'span'}>
-                отеля
+            <Typography {...favoriteHotelsText}>
+                {declOfNum(count, ['отель', 'отеля', 'отелей'])}
             </Typography>
         </div>
     );

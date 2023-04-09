@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import { Header } from 'widgets/Header';
 import { getSearchHotelsFormIsLoading, SearchHotelsForm } from 'features/SearchHotelsForm';
 import { Hotel, HotelsContent } from 'entities/Hotel';
-import { FavoriteHotels, favoriteHotelsActions, getFavoriteHotels } from 'features/favoriteHotels';
+import { FavoriteHotels, favoriteHotelsActions,getFavoriteHotelsIds } from 'features/favoriteHotels';
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getSearchHotelsFormIsLoading);
-    const favoriteHotelsIds = useSelector(getFavoriteHotels.selectIds);
+    const favoriteHotelsIds = useSelector(getFavoriteHotelsIds);
     
     const favoriteClickHandler = useCallback((hotel: Hotel, checkIn: string, checkOutDays: string) => {
         if (favoriteHotelsIds.includes(hotel.hotelId)) {

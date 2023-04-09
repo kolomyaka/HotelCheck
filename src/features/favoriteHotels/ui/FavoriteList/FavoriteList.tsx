@@ -3,7 +3,6 @@ import cls from './FavoriteList.module.scss';
 import { memo, useCallback } from 'react';
 import { Hotel, HotelListItem } from 'entities/Hotel';
 import { Typography } from 'shared/ui/Typography/Typography';
-import { EntityId } from '@reduxjs/toolkit';
 import { FavoriteHotel } from 'features/favoriteHotels/model/types/FavoriteHotelsSchema';
 
 interface FavoriteListProps {
@@ -12,7 +11,7 @@ interface FavoriteListProps {
     isLoading: boolean;
     view?: 'small' | 'default';
     onFavoriteClick: (hotel: Hotel, checkIn: string, checkOutDays: string) => void;
-    favoriteHotelsIds: EntityId[];
+    favoriteHotelsIds: number[];
 }
 
 export const FavoriteList = memo((props: FavoriteListProps) => {

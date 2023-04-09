@@ -5,11 +5,12 @@ import { memo } from 'react';
 import { Module } from 'shared/ui/Module/Module';
 import { Typography } from 'shared/ui/Typography/Typography';
 import { Hotel } from 'entities/Hotel';
-import { getFavoriteHotels } from '../../model/slices/favoriteHotelsSlice';
 import { FavoriteList } from '../FavoriteList/FavoriteList';
 import {
     FavoriteHotelsFilterGroup
-} from 'features/favoriteHotels/ui/FavoriteHotelsFilterGroup/FavoriteHotelsFilterGroup';
+} from '../FavoriteHotelsFilterGroup/FavoriteHotelsFilterGroup';
+import { getFavoriteHotelsIds } from '../../model/selectors/getFavoriteHotelsData';
+import { getSortedHotels } from '../../model/selectors/getSortedHotels';
 
 interface FavoriteHotelsProps {
     className?: string;
@@ -22,9 +23,9 @@ export const FavoriteHotels = memo((props: FavoriteHotelsProps) => {
         onFavoriteClick
     } = props;
 
-    const hotels = useSelector(getFavoriteHotels.selectAll);
-    const favoriteHotelsIds = useSelector(getFavoriteHotels.selectIds);
-
+    const hotels = useSelector(getSortedHotels);
+    const favoriteHotelsIds = useSelector(getFavoriteHotelsIds);
+    console.log(hotels, 'HOTELS');
     return (
         <Module className={classNames(cls.favoriteHotels, {}, [className])}>
             <Typography

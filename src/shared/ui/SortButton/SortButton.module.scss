@@ -6,6 +6,16 @@
   border: 1px solid var(--sort-border-color);
   padding: 4px 8px;
   border-radius: 4px;
+
+  &.active {
+    border: 1px solid var(--secondary-color);
+  }
+}
+
+.sortArrow {
+  &.active {
+    fill: var(--secondary-color);
+  }
 }
 
 .sortIcons {

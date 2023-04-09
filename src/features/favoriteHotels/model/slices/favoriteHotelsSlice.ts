@@ -1,32 +1,27 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FavoriteHotel, FavoriteHotelsSchema } from '../types/FavoriteHotelsSchema';
-import { Hotel } from 'entities/Hotel';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { FavoriteHotel, FavoriteHotelsSchema, FavoriteSortPayload } from '../types/FavoriteHotelsSchema';
 
 
 const initialState: FavoriteHotelsSchema = {
-    ids: [],
-    entities: {}
+    favoriteHotels: [],
+    sortBy: undefined,
+    orderBy: 'asc',
+    error: undefined,
 };
-
-const favoriteHotelsAdapter = createEntityAdapter<FavoriteHotel>({
-    selectId: (hotel) => hotel.hotelId
-});
-
-// Создаем селектор для получения всех избранных отелей
-export const getFavoriteHotels = favoriteHotelsAdapter.getSelectors<StateSchema>(
-    (state) => state.favoriteHotels || favoriteHotelsAdapter.getInitialState()
-);
 
 export const favoriteHotelsSlice = createSlice({
     name: 'favoriteHotels',
     initialState,
     reducers: {
         addToFavorite: (state, action: PayloadAction<FavoriteHotel>) => {
-            favoriteHotelsAdapter.addOne(state, action.payload);
+            state.favoriteHotels.push(action.payload);
         },
         removeFromFavorite: (state, action: PayloadAction<number>) => {
-            favoriteHotelsAdapter.removeOne(state, action.payload);
+            state.favoriteHotels = state.favoriteHotels.filter(favHotels => favHotels.hotelId !== action.payload);
+        },
+        sortBy: (state, action: PayloadAction<FavoriteSortPayload>) => {
+            state.sortBy = action.payload.sortBy;
+            state.orderBy = action.payload.orderBy;
         }
     },
 });

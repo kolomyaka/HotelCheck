@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import cls from './Typography.module.scss';
 import { memo, ReactNode } from 'react';
 
-interface TypographyProps {
+export interface TypographyProps {
     children: ReactNode;
     className?: string;
     variant?: 'p' | 'h1' | 'h2' | 'h3' | 'span';

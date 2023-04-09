@@ -3,7 +3,7 @@ import cls from './HotelListItem.module.scss';
 import { memo, useCallback } from 'react';
 import { Hotel } from 'entities/Hotel';
 import HotelIcon from 'shared/assets/icons/hotelIcon.svg';
-import { Typography } from 'shared/ui/Typography/Typography';
+import { Typography, TypographyProps } from 'shared/ui/Typography/Typography';
 import { usualDate } from 'shared/lib/helpers/usualDate/usualDate';
 import { betweenDates } from 'shared/lib/helpers/betweenDates/betweenDates';
 import { StarsGroup } from '../StarsGroup/StarsGroup';
@@ -35,17 +35,35 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
         onFavoriteClick?.(hotel, checkIn, checkOutDays);
     }, [checkIn, checkOutDays, hotel, onFavoriteClick]);
 
+    const DatesTypographyComponent: Omit<TypographyProps, 'children'> = {
+        variant: 'span',
+        color: 'gray',
+        size: 'S',
+    };
+
     return (
         <div className={classNames(cls.hotelListItem, {}, [className, cls[view]])}>
-            {view === 'default' && <HotelIcon/>}
+            {view === 'default' && <HotelIcon />}
             <div className={cls.hotelData}>
                 <div className={cls.hotelInfo}>
                     <Typography className={cls.hotelName} weight={'light'}>{hotel.hotelName}</Typography>
-                    <Typography className={cls.datesInfo} color={'gray'} size={'S'}>
-                        <span>{usualDate(checkIn)}</span>
-                        <span className={cls.dash}>—</span>
-                        <span>{betweenDates(checkOutDays, checkIn)}</span>
-                    </Typography>
+                    <div className={cls.datesInfo}>
+                        <Typography
+                            {...DatesTypographyComponent}
+                        >
+                            {usualDate(checkIn)}</Typography>
+                        <Typography
+                            {...DatesTypographyComponent}
+                            className={cls.dash}
+                        >
+                            —
+                        </Typography>
+                        <Typography
+                            {...DatesTypographyComponent}
+                        >
+                            {betweenDates(checkOutDays, checkIn)}
+                        </Typography>
+                    </div>
                     <StarsGroup stars={hotel.stars} />
                 </div>
                 <div className={classNames(cls.hotelInfo, {}, [cls.hotelRightSide])}>
@@ -56,20 +74,20 @@ export const HotelListItem = memo((props: HotelListItemProps) => {
                         )}
                         onClick={onFavoriteClickHandler}
                     />
-                    <Typography
-                        className={cls.hotelPrice}
-                        weight={'light'}
-                        size={'S'}
-                        color={'gray'}
-                        variant={'p'}
-                    >Price:
+                    <div className={cls.hotelPrice}>
+                        <Typography
+                            weight={'light'}
+                            size={'S'}
+                            color={'gray'}
+                            variant={'p'}
+                        >Price:
+                        </Typography>
                         <Typography variant={'span'} color={'dark'}>{hotel.priceAvg} ₽</Typography>
-                    </Typography>
+                    </div>
                 </div>
             </div>
         </div>
     );
-    
 });
 
 

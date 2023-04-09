@@ -1,11 +1,22 @@
 import { Hotel } from 'entities/Hotel';
-import { EntityState } from '@reduxjs/toolkit';
+import { OrderBy } from 'shared/types/OrderBy';
 
-export interface FavoriteHotelsSchema extends EntityState<FavoriteHotel> {
+export interface FavoriteHotelsSchema {
+    favoriteHotels: FavoriteHotel[];
     error?: string;
+    sortBy?: SortBy;
+    orderBy: OrderBy;
 }
 
 export interface FavoriteHotel extends Hotel {
     checkIn: string;
     checkOut: string
 }
+
+export type SortBy = 'priceAvg' | 'stars';
+
+export interface FavoriteSortPayload {
+    sortBy: SortBy;
+    orderBy: OrderBy;
+}
+
